@@ -18,21 +18,30 @@ import { CROP_TYPES } from '../constants/mockData';
 import { Colors } from '../constants/colors';
 import { AdBanner } from '../components/AdBanner';
 import { Ionicons } from '@expo/vector-icons';
-import {
-  InterstitialAd,
-  AdEventType,
-  TestIds,
-} from 'react-native-google-mobile-ads';
 import { AdUnits } from '../constants/adUnits';
 
 const screenWidth = Dimensions.get('window').width;
 
-const interstitial = InterstitialAd.createForAdRequest(
-  __DEV__ ? TestIds.INTERSTITIAL : AdUnits.interstitial,
-  {
-    requestNonPersonalizedAdsOnly: true,
-  }
-);
+// Dynamically import AdMob only for native platforms
+let InterstitialAd: any = null;
+let AdEventType: any = null;
+let TestIds: any = null;
+
+if (Platform.OS !== 'web') {
+  const admob = require('react-native-google-mobile-ads');
+  InterstitialAd = admob.InterstitialAd;
+  AdEventType = admob.AdEventType;
+  TestIds = admob.TestIds;
+}
+
+const interstitial = Platform.OS !== 'web' && InterstitialAd
+  ? InterstitialAd.createForAdRequest(
+      __DEV__ ? TestIds.INTERSTITIAL : AdUnits.interstitial,
+      {
+        requestNonPersonalizedAdsOnly: true,
+      }
+    )
+  : null;
 
 export const ProfitCalculatorScreen: React.FC = () => {
   const { saveProfitPlan } = useApp();
