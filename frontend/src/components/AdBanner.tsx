@@ -45,4 +45,8 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     paddingVertical: 8,
   },
+  placeholder: {
+    height: 50,
+    backgroundColor: '#f0f0f0',
+  },
 });
