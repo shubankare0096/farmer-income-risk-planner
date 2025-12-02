@@ -12,19 +12,29 @@ import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
 import { LEARNING_MODULES } from '../utils/learningContent';
 import { Colors } from '../constants/colors';
 import { useApp } from '../context/AppContext';
-import {
-  RewardedAd,
-  RewardedAdEventType,
-  TestIds,
-} from 'react-native-google-mobile-ads';
 import { AdUnits } from '../constants/adUnits';
+import { Platform } from 'react-native';
 
-const rewardedAd = RewardedAd.createForAdRequest(
-  __DEV__ ? TestIds.REWARDED : AdUnits.rewarded,
-  {
-    requestNonPersonalizedAdsOnly: true,
-  }
-);
+// Dynamically import AdMob only for native platforms
+let RewardedAd: any = null;
+let RewardedAdEventType: any = null;
+let TestIds: any = null;
+
+if (Platform.OS !== 'web') {
+  const admob = require('react-native-google-mobile-ads');
+  RewardedAd = admob.RewardedAd;
+  RewardedAdEventType = admob.RewardedAdEventType;
+  TestIds = admob.TestIds;
+}
+
+const rewardedAd = Platform.OS !== 'web' && RewardedAd
+  ? RewardedAd.createForAdRequest(
+      __DEV__ ? TestIds.REWARDED : AdUnits.rewarded,
+      {
+        requestNonPersonalizedAdsOnly: true,
+      }
+    )
+  : null;
 
 export const LearningHubScreen: React.FC = () => {
   const { learningProgress, markLessonComplete } = useApp();
