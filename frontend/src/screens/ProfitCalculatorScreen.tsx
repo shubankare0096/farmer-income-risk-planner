@@ -56,6 +56,8 @@ export const ProfitCalculatorScreen: React.FC = () => {
   const [interstitialLoaded, setInterstitialLoaded] = useState(false);
 
   React.useEffect(() => {
+    if (!interstitial || Platform.OS === 'web') return;
+
     const unsubscribeLoaded = interstitial.addAdEventListener(
       AdEventType.LOADED,
       () => {
