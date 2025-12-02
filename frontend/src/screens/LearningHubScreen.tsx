@@ -43,6 +43,8 @@ export const LearningHubScreen: React.FC = () => {
   const [rewardedAdLoaded, setRewardedAdLoaded] = useState(false);
 
   React.useEffect(() => {
+    if (!rewardedAd || Platform.OS === 'web') return;
+
     const unsubscribeLoaded = rewardedAd.addAdEventListener(
       RewardedAdEventType.LOADED,
       () => {
