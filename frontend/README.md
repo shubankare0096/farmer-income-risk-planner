@@ -1,50 +1,130 @@
-# Welcome to your Expo app 👋
+# Farmer Income & Risk Planner
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+A comprehensive React Native mobile app built with Expo to help farmers maximize profits, manage risks, track expenses, monitor market prices, and learn essential farming knowledge.
 
-## Get started
+## 🌾 Features
 
-1. Install dependencies
+### 1. **Profit Calculator**
+- Input crop details, farm size, and all costs
+- Visual pie chart breakdown of expenses
+- Calculate break-even price automatically
+- Save profit plans locally
+- Banner ads at bottom, interstitial ads after calculation
 
-   ```bash
-   npm install
-   ```
+### 2. **Risk Meter**
+- Assess farming risk based on multiple factors
+- Visual risk gauge (Low/Medium/High)
+- Top 3 personalized risk recommendations
+- No ads (educational focus)
 
-2. Start the app
+### 3. **Expense Tracker**
+- Log daily farming expenses with date and notes
+- View cumulative spending
+- Compare with profit plan budget
+- Edit and delete expense entries
+- Banner ads, interstitial when exporting
 
-   ```bash
-   npx expo start
-   ```
+### 4. **Market Price Tracker**
+- Current prices for 7 major crops (Rice, Wheat, Cotton, etc.)
+- Compare with your break-even price
+- Fair price range indicators
+- Set price alerts for target prices
+- Native ads among listings
 
-In the output, you'll find options to open the app in a
+### 5. **Learning Hub**
+- 5 educational modules with 15 total lessons:
+  - Spot Middleman Cheating
+  - Understanding Fair Market Prices
+  - Crop Insurance Basics
+  - Crop Diversification Strategy
+  - Debt vs Equity Financial Basics
+- Progress tracking
+- Rewarded video ads to unlock next lessons
+- Real, actionable content for rural farmers
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+## 🚀 Technology Stack
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+- **Framework**: React Native with Expo SDK 54
+- **Navigation**: Expo Router (file-based routing) + React Navigation
+- **UI Library**: React Native Paper (Material Design)
+- **Charts**: react-native-chart-kit
+- **Storage**: AsyncStorage (100% offline)
+- **Ads**: Google Mobile Ads SDK (AdMob)
+- **State Management**: React Context API
+- **Icons**: Expo Vector Icons
 
-## Get a fresh project
-
-When you're ready, run:
+## 📦 Installation & Running
 
 ```bash
-npm run reset-project
+# Navigate to frontend directory
+cd /app/frontend
+
+# Install dependencies (already done)
+yarn install
+
+# Start development server
+yarn start
+
+# Or run on Android
+yarn android
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+## 🏗️ Project Structure
 
-## Learn more
+```
+/app/frontend/
+├── app/                          # Expo Router screens
+│   ├── index.tsx                 # Welcome screen
+│   ├── _layout.tsx               # Root layout
+│   └── (tabs)/                   # Bottom tab navigation
+│       ├── _layout.tsx           # Tabs layout
+│       ├── profit.tsx            # Profit Calculator
+│       ├── risk.tsx              # Risk Meter
+│       ├── expenses.tsx          # Expense Tracker
+│       ├── prices.tsx            # Market Prices
+│       └── learning.tsx          # Learning Hub
+├── src/
+│   ├── components/               # Reusable components
+│   ├── constants/                # App constants
+│   ├── context/                  # React Context
+│   ├── screens/                  # Screen components
+│   └── utils/                    # Utility functions
+├── app.json                      # Expo configuration
+└── package.json                  # Dependencies
+```
 
-To learn more about developing your project with Expo, look at the following resources:
+## 🎨 Design Features
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+- **Agriculture Theme**: Green primary, Orange secondary
+- **Large Touch Targets**: 50-56px height buttons for rural users
+- **Simple Navigation**: Bottom tabs with clear icons
+- **Offline First**: All data stored locally in AsyncStorage
+- **Visual Feedback**: Loading states, success messages, alerts
+- **Responsive**: Works on all Android screen sizes
 
-## Join the community
+## 📱 AdMob Integration
 
-Join our community of developers creating universal apps.
+Uses Google's test Ad Unit IDs during development. Ready for production with your real AdMob credentials.
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+Publisher ID: `pub-9801079384342918`
+
+## 💾 Data Storage
+
+All data stored locally using AsyncStorage - fully offline capable!
+
+## 📲 Building for Production
+
+```bash
+# Install EAS CLI
+npm install -g eas-cli
+
+# Build Android APK
+eas build --platform android --profile preview
+
+# Build for Google Play Store
+eas build --platform android --profile production
+```
+
+---
+
+**Built with ❤️ for farmers everywhere**
