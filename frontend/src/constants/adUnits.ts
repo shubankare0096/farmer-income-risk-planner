@@ -3,15 +3,15 @@ import { Platform } from 'react-native';
 // Test Ad Unit IDs from Google AdMob
 export const AdUnits = {
   banner: Platform.select({
-    android: 'ca-app-pub-9801079384342918/6300978111',
+    android: 'ca-app-pub-9801079384342918/8642400593',
     ios: 'ca-app-pub-9801079384342918/2934735716',
   }) || '',
   interstitial: Platform.select({
-    android: 'ca-app-pub-9801079384342918/1033173712',
+    android: 'ca-app-pub-9801079384342918/5301905470',
     ios: 'ca-app-pub-9801079384342918/4411468910',
   }) || '',
   rewarded: Platform.select({
-    android: 'ca-app-pub-9801079384342918/5224354917',
+    android: 'ca-app-pub-9801079384342918/4070275359',
     ios: 'ca-app-pub-9801079384342918/1712485313',
   }) || '',
 };
