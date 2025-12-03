@@ -26,12 +26,14 @@ jobs:
           node-version: '18'
 
       - name: Install dependencies
+        working-directory: farmer-income-risk-planner
         run: npm install --legacy-peer-deps
 
       - name: Grant permissions
         run: chmod +x android/gradlew
 
       - name: Build APK
+        working-directory: farmer-income-risk-planner/android
         run: |
           cd android
           ./gradlew assembleRelease
@@ -40,4 +42,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: app-release
-          path: android/app/build/outputs/apk/release/app-release.apk
+          path: farmer-income-risk-planner/android/app/build/outputs/apk/release/app-release.apk
